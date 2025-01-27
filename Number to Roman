@@ -1,0 +1,45 @@
+def int_to_roman(num):
+  """
+  Convert an integer to its Roman numeral representation.
+
+  Parameters:
+      num (int): The input integer (1 <= num <= 3999).
+
+  Returns:
+      str: The Roman numeral representation of the input integer.
+  """
+  # Define the mapping of Roman numeral symbols to their respective values.
+  # This mapping is in descending order to prioritize larger numerals first.
+  roman_numerals = [
+      (1000, 'M'), (900, 'CM'), (500, 'D'), (400, 'CD'),
+      (100, 'C'), (90, 'XC'), (50, 'L'), (40, 'XL'),
+      (10, 'X'), (9, 'IX'), (5, 'V'), (4, 'IV'), (1, 'I')
+  ]
+
+  # Initialize an empty string to build the Roman numeral result.
+  roman_string = ""
+
+  # Loop through the list of Roman numeral mappings.
+  for value, symbol in roman_numerals:
+      # Determine how many times the current value can fit into num.
+      count = num // value
+
+      # Append the corresponding Roman numeral symbol 'count' times to the result string.
+      roman_string += symbol * count
+
+      # Reduce the input number by the value that has been accounted for.
+      num -= value * count
+
+  # Return the final Roman numeral string.
+  return roman_string
+
+# Example usage
+if __name__ == "__main__":
+  # Test with the input number 58
+  num = 58
+
+  # Convert the number to its Roman numeral representation
+  roman_numeral = int_to_roman(num)
+
+  # Print the result
+  print(f"The Roman numeral for {num} is '{roman_numeral}'")

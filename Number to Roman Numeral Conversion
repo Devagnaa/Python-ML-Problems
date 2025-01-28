@@ -1,0 +1,52 @@
+# Function to convert an integer to Roman numeral
+def int_to_roman(num):
+    """
+    Convert an integer to its Roman numeral representation.
+
+    Parameters:
+        num (int): The integer to convert. Guaranteed to be in the range 1 to 3999.
+
+    Returns:
+        str: The Roman numeral representation of the integer.
+    """
+    # Define Roman numeral symbols and their corresponding integer values
+    roman_symbols = [
+        (1000, 'M'),
+        (900, 'CM'),
+        (500, 'D'),
+        (400, 'CD'),
+        (100, 'C'),
+        (90, 'XC'),
+        (50, 'L'),
+        (40, 'XL'),
+        (10, 'X'),
+        (9, 'IX'),
+        (5, 'V'),
+        (4, 'IV'),
+        (1, 'I')
+    ]
+
+    # Initialize an empty string for the Roman numeral
+    roman_numeral = ''
+
+    # Iterate through each symbol and value pair
+    for value, symbol in roman_symbols:
+        # Append the symbol as many times as the value fits into num
+        while num >= value:
+            roman_numeral += symbol
+            num -= value
+
+    return roman_numeral
+
+# Example usage
+if __name__ == "__main__":
+    # Input integer
+    num = 58
+
+    # Call the function and print the result
+    output = int_to_roman(num)
+    print(f"The Roman numeral representation of {num} is: {output}")
+
+
+OUTPUT:
+The Roman numeral representation of 58 is: LVIII

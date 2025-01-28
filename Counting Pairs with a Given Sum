@@ -1,0 +1,51 @@
+# Function to count pairs with a given sum
+def count_pairs_with_sum(l, target_sum):
+    """
+    Count the number of pairs of elements in the list that sum up to the given target.
+
+    Parameters:
+        l (list): A list of integers.
+        target_sum (int): The target sum to find pairs for.
+
+    Returns:
+        int: The total number of pairs that sum up to the target.
+    """
+    # Dictionary to store the frequency of each element
+    freq = {}
+
+    # Count the frequency of each element in the list
+    for num in l:
+        freq[num] = freq.get(num, 0) + 1
+
+    # Variable to count the number of pairs
+    count = 0
+
+    # Iterate through the list to find pairs
+    for num in l:
+        # Check if the complement (target_sum - num) exists in the dictionary
+        complement = target_sum - num
+        if complement in freq:
+            count += freq[complement]
+
+            # If the pair consists of the same element (e.g., 3 + 3 = 6),
+            # decrement the count to avoid counting it twice
+            if complement == num:
+                count -= 1
+
+    # Since each pair is counted twice, divide the total count by 2
+    return count // 2
+
+# Example usage
+if __name__ == "__main__":
+    # Input list and target sum
+    l = [1, 2, 3, 4, 5, 4, 3, 2, 1]
+    target_sum = 6
+
+    # Call the function and print the result
+    output = count_pairs_with_sum(l, target_sum)
+    print(f"The total number of pairs with sum {target_sum} is: {output}")
+
+
+
+OUTPUT:
+The total number of pairs with sum 6 is: 7
